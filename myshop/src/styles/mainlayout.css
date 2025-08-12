@@ -9,7 +9,6 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 60px; /* o la altura que tenga tu header */
   z-index: 1000;
   background-color: white;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -22,7 +21,7 @@
 .layout-content {
   display: flex;
   flex: 1;
-  padding-top: 80px;
+  padding-top: 60px;
 
 }
 

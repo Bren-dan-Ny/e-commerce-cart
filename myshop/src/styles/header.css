@@ -1,44 +1,36 @@
+/* header.css */
+
 header {
-  flex-wrap: wrap; /* Permite que los elementos bajen a la siguiente línea si falta espacio */
+  position: relative;
+  padding: 0 1rem;
+  z-index: 10; /* para que el logo esté por encima si hace falta */
+}
+
+/* Logo centrado */
+.logo-center img {
+  max-height: 50px;
+  max-width: 150px;
+  object-fit: contain;
+}
+
+/* Para que los contenedores lateral izquierdo y derecho no colapsen */
+header > div:first-child,
+header > div:last-child {
+  flex-shrink: 0;
+}
+
+/* Espaciado y alineación lateral */
+header > div:first-child {
   gap: 0.5rem;
-
 }
 
-header .btn {
-  flex-shrink: 0; /* El botón no se encoge */
-}
-
-/* Logo más pequeño en móviles */
-header .navbar-brand img {
-  height: 50px;
-  transition: height 0.3s ease;
-}
-
-@media (min-width: 768px) {
-  header .navbar-brand img {
-    height: 50px;
+@media (max-width: 576px) {
+  .logo-center img {
+    max-height: 40px;
   }
-}
-
-/* Ajustar el contenedor de íconos */
-header .d-flex.align-items-center.ms-auto {
-  flex-wrap: wrap;
-
-  justify-content: flex-end;
-  flex-grow: 1;
-}
-
-/* Links estilo botón en móvil, con más espacio */
-header .d-flex.align-items-center.gap-4.ms-auto a {
-  padding: 0.3rem 0.6rem;
-  font-size: 0.9rem;
-
-}
-
-/* En pantallas muy pequeñas, se puede reducir el gap */
-@media (max-width: 400px) {
-  header .d-flex.align-items-center.gap-4.ms-auto a {
-    padding: 0.2rem 0.4rem;
-    font-size: 0.85rem;
+  
+  /* Opcional: ajustar botones y texto */
+  header > div:first-child a {
+    font-size: 0.9rem;
   }
 }
