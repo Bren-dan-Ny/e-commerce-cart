@@ -68,7 +68,7 @@ function ProductCard({ product, onView = () => {}, showCategory = false }) {
         </a>
 
         {/* Badges superpuestos */}
-        <div className="position-absolute top-0 start-0 d-flex flex-column gap-1 m-2">
+        <div className="position-absolute top-0 start-0 d-flex flex-column gap-1  m-2">
           {discountPercentage > 0 && (
             <span className="badge bg-danger discount-badge">
               -{discountPercentage}%
@@ -124,10 +124,11 @@ function ProductCard({ product, onView = () => {}, showCategory = false }) {
         <div className="d-flex align-items-center mb-2">
           {safeRating ? (
             <>
-              <StarRating rating={safeRating} />
-              <small className="text-body-secondary ms-2">
-                ({safeRating.toFixed(1)})
-              </small>
+              <div className="rating mb-3">
+                {"★".repeat(Math.round(product.rating))}
+                {"☆".repeat(5 - Math.round(product.rating))}
+                <small className="ms-2 text-secondary">{product.rating}</small>
+              </div>
             </>
           ) : (
             <small className="text-muted">Sin calificaciones</small>

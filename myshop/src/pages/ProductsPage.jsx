@@ -2,6 +2,7 @@ import { getProducts, getProductsByCategory } from "../services/productsApi";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
+import { Link } from "react-router-dom";
 import "../styles/productsPage.css";
 
 export default function ProductsPage({ selectedCategory }) {
@@ -38,23 +39,39 @@ export default function ProductsPage({ selectedCategory }) {
   if (error) return <p>Error: {error}</p>;
   if (products.length === 0) return <p>No hay productos</p>;
   return (
-    <div
-      className="container my-4"
-      style={{ height: "100vh", overflowY: "auto" }}
-    >
-      <h4 className="mb-5">Todos los productos</h4>
-      <div className="row g-3">
-        {products.map((p) => (
-          <div key={p.id} className="col-6 col-sm-6 col-md-4 col-lg-3 ">
-            <ProductCard
-              product={p}
-              onFavorite={(prod) => console.log("fav", prod.id)}
-              onAddToCart={handleAddToCart}
-              onView={() => console.log("view", p.id)} // función para el click "ver"
-            />
-          </div>
-        ))}
+    <>
+      {" "}
+      <nav aria-label="breadcrumb" className="container mt-5">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
+            <Link to="/" className="text-dark">
+              Inicio
+            </Link>
+          </li>
+          {category && (
+            <li className="breadcrumb-item active" aria-current="page">
+              {category.charAt(0).toUpperCase() + category.slice(1)}
+            </li>
+          )}
+        </ol>
+      </nav>
+      <div
+        className="container my-4"
+        style={{ minHeight: "100vh", paddingBottom: "5rem" }}
+      >
+        <div className="row g-3">
+          {products.map((p) => (
+            <div key={p.id} className="col-6 col-sm-6 col-md-4 col-lg-3 ">
+              <ProductCard
+                product={p}
+                onFavorite={(prod) => console.log("fav", prod.id)}
+                onAddToCart={handleAddToCart}
+                onView={() => console.log("view", p.id)} // función para el click "ver"
+              />
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -1,8 +1,12 @@
 import { useCart } from "../context/CartContext";
 import "../styles/cartPage.css";
+import { useNavigate } from "react-router-dom";
+
+import ProductDetails from "../pages/ProductDetails";
 
 export default function CartPage() {
   const { cartItems, removeFromCart, clearCart, updateQuantity } = useCart();
+  const navigate = useNavigate();
 
   const totalPrice = cartItems.reduce((sum, item) => {
     const discountValue = item.price * (item.discountPercentage / 100);
@@ -14,7 +18,7 @@ export default function CartPage() {
       <div className="text-center" style={{ marginTop: "5rem" }}>
         <i className="bi bi-cart-x fs-1 text-muted"></i>
         <p className="mt-3">Tu carrito está vacío.</p>
-        <a href="/" className="btn btn-primary mt-2">
+        <a href="/" className="btn btn-danger mt-2">
           Volver a la tienda
         </a>
       </div>
@@ -64,21 +68,24 @@ export default function CartPage() {
                     alt={item.title}
                     className="rounded me-3"
                     style={{
-                      width: "60px",
-                      height: "60px",
+                      width: "100px",
+                      height: "100px",
                       objectFit: "cover",
                     }}
+                    onClick={() => navigate(`/product/${item.id}`)}
                   />
                 )}
                 <span>{item.title}</span>
               </div>
 
               {/* Precio */}
-              <div className="col-md-2 text-end">${item.price.toFixed(2)}</div>
+              <div className="col-md-2 text-end">
+                S/.{item.price.toFixed(2)}
+              </div>
 
               {/* Descuento */}
               <div className="col-md-2 text-end text-danger">
-                -${discountValue.toFixed(2)}
+                -S/.{discountValue.toFixed(2)}
               </div>
 
               {/* Cantidad */}
@@ -112,7 +119,7 @@ export default function CartPage() {
 
               {/* Subtotal */}
               <div className="col-md-2 text-end fw-bold text-success">
-                ${subtotal.toFixed(2)}
+                S/.{subtotal.toFixed(2)}
               </div>
             </div>
           );
@@ -153,6 +160,7 @@ export default function CartPage() {
                         height: "100px",
                         objectFit: "cover",
                       }}
+                      onClick={() => navigate(`/product/${item.id}`)} // <--- navegación en click
                     />
                   </div>
                 )}
@@ -165,7 +173,7 @@ export default function CartPage() {
                 <div className="d-flex justify-content-between mb-1">
                   <span className="text-muted">Descuento:</span>
                   <span className="text-danger">
-                    -S/.{discountValue.toFixed(2)}
+                    S/.{discountValue.toFixed(2)}
                   </span>
                 </div>
 
@@ -221,14 +229,14 @@ export default function CartPage() {
                   Productos:{" "}
                   {cartItems.reduce((sum, item) => sum + item.quantity, 0)}
                 </span>
-                <span>${totalPrice.toFixed(2)}</span>
+                <span>S/.{totalPrice.toFixed(2)}</span>
               </div>
               <div className="d-grid gap-2">
                 <button className="btn btn-danger py-2">
                   <i className="bi bi-credit-card me-2"></i>Finalizar compra
                 </button>
                 <button
-                  className="btn btn-outline-danger py-2"
+                  className="btn btn-outline-dark py-2"
                   onClick={clearCart}
                 >
                   <i className="bi bi-trash me-2"></i>Vaciar carrito

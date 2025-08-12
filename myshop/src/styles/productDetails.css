@@ -59,4 +59,13 @@
     object-fit: contain;
   }
   
+  .breadcrumb {
+    font-size: 1rem;
+  }
+  
+  @media (max-width: 576px) {
+    .breadcrumb {
+      font-size: 0.85rem;
+    }
+  }
   
