@@ -159,13 +159,13 @@ export default function CartPage() {
 
                 <div className="d-flex justify-content-between mb-1">
                   <span className="text-muted">Precio:</span>
-                  <span>${item.price.toFixed(2)}</span>
+                  <span>S/.{item.price.toFixed(2)}</span>
                 </div>
 
                 <div className="d-flex justify-content-between mb-1">
                   <span className="text-muted">Descuento:</span>
                   <span className="text-danger">
-                    -${discountValue.toFixed(2)}
+                    -S/.{discountValue.toFixed(2)}
                   </span>
                 </div>
 
@@ -201,7 +201,7 @@ export default function CartPage() {
                 <div className="d-flex justify-content-between mt-3 pt-2 border-top">
                   <span className="fw-bold">Subtotal:</span>
                   <span className="fw-bold text-success">
-                    ${subtotal.toFixed(2)}
+                    S/.{subtotal.toFixed(2)}
                   </span>
                 </div>
               </div>
