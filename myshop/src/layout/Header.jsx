@@ -21,14 +21,11 @@ export default function Header({ sidebarOpen, setSidebarOpen }) {
 
       {/* Logo */}
       <NavLink className="navbar-brand d-flex align-items-center m-0" to="/">
-        <img src={logotipo} alt="Logo" height="60" />
+        <img src={logotipo} alt="Logo" />
       </NavLink>
 
       {/* Íconos */}
       <div className="d-flex align-items-center gap-4 ms-auto">
-        <NavLink to="/" className="text-black">
-          Ofertas
-        </NavLink>
         <NavLink className="text-black">Mis compras</NavLink>
         <NavLink to="/favorites" className="nav-link position-relative">
           <i className="bi bi-heart fs-4"></i>

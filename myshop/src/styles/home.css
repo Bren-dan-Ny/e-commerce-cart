@@ -1,51 +1,32 @@
-
-/* Agrega esto a tu home.css */
-.scrollbar-hidden::-webkit-scrollbar {
-  display: none;
-}
-
-.scrollbar-hidden {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.home-page .product-carousel {
-  transition: transform 0.3s ease;
-}
-
-.home-page .product-carousel-item {
-  scroll-snap-align: start;
-  flex: 0 0 auto;
-  width: 250px;
-}
-.carousel-item {
-  height: 600px; /* aquí ajustas la altura que quieras */
-  object-fit: cover; /* hace que se recorte manteniendo proporción */
-  object-position: center center; /* centra la imagen vertical y horizontalmente */
+.carousel-item img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  object-position: center;
 }
 
 @media (max-width: 768px) {
-  .carousel-inner.ratio {
-    --bs-aspect-ratio: 50%; /* reduce altura manteniendo proporción */
+  .carousel-item img {
+    height: 200px;
   }
 }
 
-/* Tarjeta de producto responsiva */
-.product-card {
-  width: 100%;
-  max-width: 250px; /* en pantallas grandes */
-  min-width: 150px; /* en pantallas pequeñas */
-  height: auto;
+@media (max-width: 320px) {
+  .carousel-item img {
+    height: 150px;
+  }
 }
 
-/* home.css */
 .flash-sales-container {
   display: flex;
-  gap: 1rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  gap: 1rem;
   padding-bottom: 1rem;
-  -webkit-overflow-scrolling: touch; /* suave en iOS */
+  -webkit-overflow-scrolling: touch;
+  max-width: 100vw; /* que no exceda el ancho del viewport */
+  box-sizing: border-box;
+  scroll-padding-left: 1rem; /* para que el primer item no quede pegado */
 }
 
 .flash-sales-container::-webkit-scrollbar {
@@ -57,7 +38,35 @@
   border-radius: 4px;
 }
 
-.flash-sales-container > div {
+.flash-sales-item {
   flex: 0 0 auto;
   scroll-snap-align: start;
+  width: 45vw;        /* 45% ancho viewport para que se vean 2 aprox */
+  max-width: 220px;
+  min-width: 120px;
+  box-sizing: border-box;
+}
+
+/* Ajustes para tablets y pantallas medianas */
+@media (min-width: 769px) {
+  .flash-sales-item {
+    width: 220px;
+    max-width: 220px;
+    min-width: 180px;
+  }
+}
+
+/* Para pantallas pequeñas (menos de 480px) */
+@media (max-width: 480px) {
+  .flash-sales-item {
+    width: 60vw;     /* toma más espacio para verse mejor */
+    max-width: none; /* quita máximo para que pueda crecer */
+    min-width: 140px;
+  }
+}
+
+/* Si tu ProductCard tiene un width fijo, haz que sea 100% para que se adapte */
+.product-card {
+  width: 100%;
+  height: auto; /* si tiene height fijo, también puedes hacer auto para adaptar */
 }

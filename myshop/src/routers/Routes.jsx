@@ -4,6 +4,7 @@ import MainLayout from "../layout/MainLayout";
 import ProductsPage from "../pages/ProductsPage";
 import CartPage from "../pages/CartPage";
 import FavoritesPage from "../pages/FavoritePage";
+import ProductDetails from "../pages/ProductDetails";
 
 export default function MyRoutes({ products }) {
   return (
@@ -13,6 +14,7 @@ export default function MyRoutes({ products }) {
         <Route path="/favorites" element={<FavoritesPage />} />
         <Route index element={<Home products={products} />} />
         <Route path="/category/:category" element={<ProductsPage />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
       </Route>
     </Routes>
   );

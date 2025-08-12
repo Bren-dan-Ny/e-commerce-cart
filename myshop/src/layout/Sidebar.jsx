@@ -30,7 +30,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
       icon: "bi bi-gender-female",
       label: "Mujeres",
       items: [
-        { label: "Vestidos", value: ["womens-dresses", "tops"] },
+        { label: "Vestidos", value: "womens-dresses" },
         { label: "Calzado", value: "womens-shoes" },
         { label: "Bolsos", value: "womens-bags" },
         { label: "Relojes", value: "womens-watches" },

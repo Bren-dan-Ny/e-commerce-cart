@@ -10,7 +10,6 @@ import banner_4 from "../assets/banner_4.png";
 export default function Home({ products }) {
   const flashSalesRef = useRef(null);
 
-  // 2. Función reusable para el desplazamiento
   const handleScroll = (ref, direction) => {
     if (ref.current) {
       const itemWidth = ref.current.firstChild?.offsetWidth || 250;
@@ -25,7 +24,7 @@ export default function Home({ products }) {
     .slice(0, 8);
   return (
     <div>
-      <div className="">
+      <div>
         <div
           id="carouselExampleIndicators"
           className="carousel slide"
@@ -63,33 +62,33 @@ export default function Home({ products }) {
             <div className="carousel-item active">
               <img
                 src={banner_1}
-                className="d-block w-100 h-100 object-fit-cover"
+                className="d-block w-100 object-fit-cover"
                 alt="Promoción"
-                loading="lazy" // Carga diferida
+                loading="lazy"
               />
             </div>
             <div className="carousel-item">
               <img
                 src={banner_2}
-                className="d-block w-100 h-100 object-fit-cover"
+                className="d-block w-100 object-fit-cover"
                 alt="Promoción"
-                loading="lazy" // Carga diferida
+                loading="lazy"
               />
             </div>
             <div className="carousel-item">
               <img
                 src={banner_3}
-                className="d-block w-100 h-100 object-fit-cover"
+                className="d-block w-100 object-fit-cover"
                 alt="Promoción"
-                loading="lazy" // Carga diferida
+                loading="lazy"
               />
             </div>
             <div className="carousel-item">
               <img
                 src={banner_4}
-                className="d-block w-100 h-100 object-fit-cover"
+                className="d-block w-100 object-fit-cover"
                 alt="Promoción"
-                loading="lazy" // Carga diferida
+                loading="lazy"
               />
             </div>
           </div>
@@ -120,49 +119,44 @@ export default function Home({ products }) {
         </div>
       </div>
 
-      <div className="container mt-4">
-        <div className="d-flex align-items-center mb-3">
+      <div
+        className="container"
+        style={{ marginTop: "5rem", marginBottom: "5rem" }}
+      >
+        <div className="d-flex align-items-center mb-4 px-2">
           <div
             className="rectangle bg-danger"
             style={{ width: "20px", height: "40px" }}
           ></div>
-          <h6 className="px-3 text-danger m-0">Ofertas de hoy</h6>
+          <h6 className="px-3 text-danger ">Ofertas de hoy</h6>
         </div>
 
         {/* Carrusel de Flash Sales (8 productos) */}
-        <div className="my-1">
-          <div className="d-flex justify-content-between align-items-center mb-4">
-            <div className="d-flex justify-content-between align-items-center mb-4">
-              <h2 className="fw-bold mb-0">Ofertas Flash</h2>
-              <div className="d-flex align-items-center"></div>
-            </div>
-            <div className="d-flex">
-              <button
-                className="btn btn-outline-secondary mx-2"
-                onClick={() => handleScroll(flashSalesRef, "left")}
-              >
-                <i className="bi bi-chevron-left"></i>
-              </button>
-              <button
-                className="btn btn-outline-secondary"
-                onClick={() => handleScroll(flashSalesRef, "right")}
-              >
-                <i className="bi bi-chevron-right"></i>
-              </button>
-            </div>
+        <div className="d-flex justify-content-between align-items-center mb-4">
+          <div className="d-flex px-2 align-items-center">
+            <h2 className="fw-bold mb-">Ofertas Flash</h2>
           </div>
-          <div className="flash-sales-container" ref={flashSalesRef}>
-            {flashSalesProducts.map((product) => (
-              <div
-                key={product.id}
-                style={{
-                  flex: "0 0 clamp(200px, 25%, 250px)", // responsive
-                }}
-              >
-                <ProductCard product={product} />
-              </div>
-            ))}
+          <div className="d-flex px-4">
+            <button
+              className="btn btn-outline-secondary mx-2"
+              onClick={() => handleScroll(flashSalesRef, "left")}
+            >
+              <i className="bi bi-chevron-left"></i>
+            </button>
+            <button
+              className="btn btn-outline-secondary"
+              onClick={() => handleScroll(flashSalesRef, "right")}
+            >
+              <i className="bi bi-chevron-right"></i>
+            </button>
           </div>
+        </div>
+        <div className="flash-sales-container" ref={flashSalesRef}>
+          {flashSalesProducts.map((product) => (
+            <div key={product.id} className="flash-sales-item">
+              <ProductCard product={product} />
+            </div>
+          ))}
         </div>
       </div>
     </div>
